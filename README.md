@@ -1,73 +1,108 @@
-<<<<<<< HEAD
-# React + TypeScript + Vite
+# Bible App - Convex Demo Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple Bible study app built with React and Convex, demonstrating real-time database functionality and collaborative note-taking.
 
-Currently, two official plugins are available:
+## 🎯 Project Goals
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Primary**: Demonstrate Convex competency (queries, mutations, actions)
+- **Secondary**: Build functional Bible verse display with community notes
+- **Demo**: Real-time collaboration across multiple browser windows
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Frontend**: React + TypeScript + Vite
+- **Backend**: Convex (serverless functions + real-time database)
+- **Styling**: CSS with background imagery
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🚀 Getting Started
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+### Prerequisites
+- Node.js (v16 or higher)
+- npm or yarn
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Installation
+
+1. **Clone and install dependencies**
+   ```bash
+   git clone <repository-url>
+   cd bible-app
+   npm install
+   ```
+
+2. **Set up Convex**
+   ```bash
+   npm install convex
+   npx convex dev
+   ```
+   This will create your Convex project and provide dashboard access.
+
+3. **Start development servers**
+   
+   Terminal 1 (Convex backend):
+   ```bash
+   npx convex dev
+   ```
+   
+   Terminal 2 (React frontend):
+   ```bash
+   npm run dev
+   ```
+
+4. **Access the app**
+   - Frontend: http://localhost:5173
+   - Convex Dashboard: (URL provided in terminal)
+
+## 📁 Project Structure
+
+```
+bible-app/
+├── convex/
+│   ├── _generated/          # Auto-generated API files
+│   └── bible.ts            # Bible functions (queries, mutations)
+├── public/
+│   └── images/
+│       └── open-book.jpg   # Background book image
+├── src/
+│   ├── App.tsx             # Main React component
+│   ├── App.css             # Styling with book background
+│   └── main.tsx            # Entry point with ConvexProvider
+└── package.json
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🔧 Convex Functions
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Queries (Read Data)
+- `searchVerses` - Get sample Bible verses
+- `getBookmarks` - Retrieve all saved bookmarks
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-=======
+### Mutations (Write Data)  
+- `saveBookmark` - Save a verse bookmark with reference
 
->>>>>>> a512deb40a5471303d10da9e0dd4e84d10b1cc23
+### Actions (External APIs)
+- `fetchVerse` - Simulate external Bible API call
+
+## 🎨 Features
+
+- **Verse Display**: Shows sample Bible verses with clean formatting
+- **Bookmarking**: Click to save verses with automatic reference generation
+- **Real-time Updates**: Bookmarks appear instantly across all connected clients
+- **Book Background**: Open book image as page background
+
+## 📊 Database Schema
+
+### Bookmarks Table
+- `verse` (string) - The verse text
+- `reference` (string) - Bible reference (e.g., "John 3:16")
+- `createdAt` (string) - ISO timestamp
+
+## 🎯 Convex Concepts Demonstrated
+
+1. **Queries**: Real-time data fetching with `useQuery`
+2. **Mutations**: Database writes with `useMutation` 
+3. **Type Safety**: End-to-end TypeScript integration
+4. **Real-time Sync**: Automatic UI updates across clients
+
+## 🔗 Resources
+
+- [Convex Documentation](https://docs.convex.dev)
+- [Project Dashboard](https://dashboard.convex.dev)
