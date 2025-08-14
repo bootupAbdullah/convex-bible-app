@@ -1,7 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
 body {
+  display: flex;
+  flex-direction: column;
   background-image: url('public/images/open-book.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  /* border: 1px solid red; */
 }

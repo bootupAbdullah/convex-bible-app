@@ -1,13 +1,14 @@
 import { query, mutation, action} from "./_generated/server";
 import { v } from "convex/values";
 
-export const searchVerses = query({
+
+// Query - get all verses in the book of John
+export const getVerses = query({
   args: {},
-  handler: async () => {
-    return [
-      { book: "John", chapter: 3, verse: 16, text: "For God so loved the world..." },
-      { book: "Psalms", chapter: 23, verse: 1, text: "The Lord is my shepherd..." }
-    ];
+  handler: async (ctx) => {
+    return await ctx.db.query("verses")
+      .filter(q => q.eq(q.field("type"), "paragraph text"))
+      .collect();
   },
 });
 
@@ -28,6 +29,14 @@ export const saveBookmark = mutation({
       reference: args.reference,
       createdAt: new Date().toISOString()
     });
+  },
+});
+
+// MUTATION - delete a bookmark
+export const deleteBookmark = mutation({
+  args: { id: v.id("bookmarks") },
+  handler: async (ctx, args) => {
+    await ctx.db.delete(args.id);
   },
 });
 
